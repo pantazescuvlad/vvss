@@ -28,13 +28,13 @@ import java.util.Date;
 public class Controller {
     private static final Logger log = Logger.getLogger(Controller.class.getName());
     private ObservableList<Task> tasksList;
-    TasksService service;
-    DateService dateService;
+    private TasksService service;
+    private DateService dateService;
 
     static Stage editNewStage;
     static Stage infoStage;
 
-    public static TableView mainTable;
+    static TableView mainTable;
 
     @FXML
     public  TableView tasks;
@@ -90,7 +90,7 @@ public class Controller {
             editNewStage = new Stage();
             NewEditController.setCurrentStage(editNewStage);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/new-edit-task.fxml"));
-            Parent root = loader.load();//getClass().getResource("/fxml/new-edit-task.fxml"));
+            Parent root = loader.load();
             NewEditController editCtrl = loader.getController();
             editCtrl.setService(service);
             editCtrl.setTasksList(tasksList);
