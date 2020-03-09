@@ -27,12 +27,12 @@ import java.util.Date;
 
 public class Controller {
     private static final Logger log = Logger.getLogger(Controller.class.getName());
-    public ObservableList<Task> tasksList;
+    private ObservableList<Task> tasksList;
     TasksService service;
     DateService dateService;
 
-    public static Stage editNewStage;
-    public static Stage infoStage;
+    static Stage editNewStage;
+    static Stage infoStage;
 
     public static TableView mainTable;
 
