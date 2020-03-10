@@ -173,12 +173,4 @@ public class LinkedTaskList  extends TaskList {
                 ", last=" + last +
                 '}';
     }
-    @Override
-    protected LinkedTaskList clone() throws CloneNotSupportedException {
-        LinkedTaskList tasks = new LinkedTaskList();
-        for (Task t : this){
-            tasks.add(t);
-        }
-        return tasks;
-    }
 }

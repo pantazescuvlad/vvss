@@ -20,7 +20,11 @@ public class TaskIO {
     private static final int SECONDS_IN_HOUR = 3600;
     private static final int SECONDS_IN_MIN = 60;
 
-    private static final String IO_EXCEPTION = "IO exception reading or writing file"; // Compliant
+    private static final String IO_EXCEPTION = "IO exception reading or writing file";
+
+    private TaskIO() {
+        throw new IllegalStateException("TaskIO class");
+    }
 
     private static final Logger log = Logger.getLogger(TaskIO.class.getName());
     public static void write(TaskList tasks, OutputStream out) throws IOException {
@@ -50,7 +54,7 @@ public class TaskIO {
         try {
             int listLength = dataInputStream.readInt();
             for (int i = 0; i < listLength; i++){
-                int titleLength = dataInputStream.readInt();
+                dataInputStream.readInt();
                 String title = dataInputStream.readUTF();
                 boolean isActive = dataInputStream.readBoolean();
                 int interval = dataInputStream.readInt();
@@ -72,30 +76,20 @@ public class TaskIO {
         }
     }
     public static void writeBinary(TaskList tasks, File file)throws IOException{
-        FileOutputStream fos = null;
-        try {
-            fos = new FileOutputStream(file);
+        try(FileOutputStream fos = new FileOutputStream(file)){
             write(tasks,fos);
         }
         catch (IOException e){
             log.error(IO_EXCEPTION);
         }
-        finally {
-            fos.close();
-        }
     }
 
     public static void readBinary(TaskList tasks, File file) throws IOException{
-        FileInputStream fis = null;
-        try {
-            fis = new FileInputStream(file);
+        try (FileInputStream fis = new FileInputStream(file)) {
             read(tasks, fis);
         }
         catch (IOException e){
             log.error(IO_EXCEPTION);
-        }
-        finally {
-            fis.close();
         }
     }
     public static void write(TaskList tasks, Writer out) throws IOException {
@@ -181,13 +175,14 @@ public class TaskIO {
         seconds = trimmed.contains("second") ? 1 : 0;
 
         int[] timeEntities = new int[]{days, hours, minutes, seconds};
-        int i = 0, j = timeEntities.length-1;// positions of timeEntities available
+        int i = 0;
+        int j = timeEntities.length-1;// positions of timeEntities available
         while (i != 1 && j != 1) {
             if (timeEntities[i] == 0) i++;
             if (timeEntities[j] == 0) j--;
         }
 
-        String[] numAndTextValues = trimmed.split(" "); //{"46", "minutes", "40", "seconds"};
+        String[] numAndTextValues = trimmed.split(" ");
         for (int k = 0 ; k < numAndTextValues.length; k+=2){
             timeEntities[i] = Integer.parseInt(numAndTextValues[k]);
             i++;
@@ -214,7 +209,8 @@ public class TaskIO {
     private static Date getDateFromText (String line, boolean isStartTime) {
         Date date = null;
         String trimmedDate; //date trimmed from whole string
-        int start, end;
+        int start;
+        int end;
 
         if (isStartTime){
             start = line.indexOf('[');
@@ -278,7 +274,8 @@ public class TaskIO {
         int seconds = (interval - (SECONDS_IN_DAY *days + SECONDS_IN_HOUR *hours + SECONDS_IN_MIN *minutes));
 
         int[] time = new int[]{days, hours, minutes, seconds};
-        int i = 0, j = time.length-1;
+        int i = 0;
+        int j = time.length-1;
         while (time[i] == 0 || time[j] == 0){
             if (time[i] == 0) i++;
             if (time[j] == 0) j--;

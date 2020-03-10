@@ -107,7 +107,7 @@ public class Task implements Serializable, Cloneable {
             if ((current.after(start) || current.equals(start)) && (current.before(end) || current.equals(end))){
                 for (long i = start.getTime(); i <= end.getTime(); i += interval*1000){
                     if (current.equals(timeAfter)) return new Date(timeAfter.getTime()+interval*1000);
-                    if (current.after(timeBefore) && current.before(timeAfter)) return timeBefore;//return timeAfter
+                    if (current.after(timeBefore) && current.before(timeAfter)) return timeBefore;
                     timeBefore = timeAfter;
                     timeAfter = new Date(timeAfter.getTime()+ interval*1000);
                 }
@@ -172,6 +172,7 @@ public class Task implements Serializable, Cloneable {
                 ", active=" + active +
                 '}';
     }
+
     @Override
     protected Task clone() throws CloneNotSupportedException {
         Task task  = (Task)super.clone();

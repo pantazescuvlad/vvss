@@ -55,13 +55,26 @@ public class Controller {
     @FXML
     private TextField fieldTimeTo;
 
+    public static void setMainTable(TableView mainTable) {
+        Controller.mainTable = mainTable;
+    }
+
+    public static void setInfoStage(Stage infoStage) {
+        Controller.infoStage = infoStage;
+    }
+
+    public static void setEditNewStage(Stage editNewStage) {
+        Controller.editNewStage = editNewStage;
+    }
+
+
     public void setService(TasksService service){
         this.service=service;
         this.dateService=new DateService(service);
         this.tasksList=service.getObservableList();
         updateCountLabel(tasksList);
         tasks.setItems(tasksList);
-        mainTable = tasks;
+        setMainTable(tasks);
 
         tasksList.addListener((ListChangeListener.Change<? extends Task> c) -> {
                     updateCountLabel(tasksList);
@@ -87,7 +100,7 @@ public class Controller {
         NewEditController.setClickedButton((Button) source);
 
         try {
-            editNewStage = new Stage();
+            setEditNewStage(new Stage());
             NewEditController.setCurrentStage(editNewStage);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/new-edit-task.fxml"));
             Parent root = loader.load();
@@ -121,7 +134,7 @@ public class Controller {
             stage.setResizable(false);
             stage.setTitle("Info");
             stage.initModality(Modality.APPLICATION_MODAL);//??????
-            infoStage = stage;
+            setInfoStage(stage);
             stage.show();
         }
         catch (IOException e){
