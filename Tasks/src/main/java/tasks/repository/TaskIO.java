@@ -1,4 +1,4 @@
-package tasks.services;
+package tasks.repository;
 
 
 import javafx.collections.ObservableList;
@@ -41,7 +41,7 @@ public class TaskIO {
                     dataOutputStream.writeLong(t.getEndTime().getTime());
                 }
                 else {
-                    dataOutputStream.writeLong(t.getTime().getTime());
+                    dataOutputStream.writeLong(t.getStartTime().getTime());
                 }
             }
         }

@@ -2,10 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bbe79f98-8ba9-4627-a3ca-7e0c8d7562fb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Docs/Lab01/Lab01_ReviewReport.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Docs/Lab01/Lab01_ReviewReport.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tasks.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/initial/diagram.uml" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/initial/diagram.uml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/task-manager-log.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/task-manager-log.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tasks/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tasks/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tasks/controller/NewEditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tasks/controller/NewEditController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tasks/controller/Notificator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tasks/controller/Notificator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tasks/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tasks/model/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tasks/services/TaskIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tasks/repository/TaskIO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tasks/view/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tasks/view/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tasks/controller/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tasks/controller/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tasks/controller/NewEditController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tasks/controller/NewEditController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tasks/model/Task.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tasks/model/Task.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tasks/services/TaskIO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tasks/view/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tasks/view/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,6 +54,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultPlantUmlFileTemplate" value="UML Class" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
