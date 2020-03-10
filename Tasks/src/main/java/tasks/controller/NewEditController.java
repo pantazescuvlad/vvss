@@ -43,7 +43,7 @@ public class NewEditController {
     private ObservableList<Task> tasksList;
     private TasksService service;
     private DateService dateService;
-
+    private String pressedButtonId;
 
     private boolean incorrectInputMade;
     @FXML
@@ -86,6 +86,10 @@ public class NewEditController {
             default:
                 break;
         }
+    }
+
+    public void setPressedButtonId(String pressedButtonId) {
+        this.pressedButtonId = pressedButtonId;
     }
 
     @FXML
@@ -141,7 +145,7 @@ public class NewEditController {
         Task collectedFieldsTask = collectFieldsData();
         if (incorrectInputMade) return;
 
-        if (currentTask == null){//no task was chosen -> add button was pressed
+        if (pressedButtonId.equals("btnNew")){
             tasksList.add(collectedFieldsTask);
         }
         else {

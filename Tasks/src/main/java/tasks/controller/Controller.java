@@ -99,24 +99,28 @@ public class Controller {
         Object source = actionEvent.getSource();
         NewEditController.setClickedButton((Button) source);
 
-        try {
-            setEditNewStage(new Stage());
-            NewEditController.setCurrentStage(editNewStage);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/new-edit-task.fxml"));
-            Parent root = loader.load();
-            NewEditController editCtrl = loader.getController();
-            editCtrl.setService(service);
-            editCtrl.setTasksList(tasksList);
-            editCtrl.setCurrentTask((Task)mainTable.getSelectionModel().getSelectedItem());
-            editNewStage.setScene(new Scene(root, 600, 350));
-            editNewStage.setResizable(false);
-            editNewStage.initOwner(Main.primaryStage);
-            editNewStage.initModality(Modality.APPLICATION_MODAL);//??????
-            editNewStage.show();
-        }
-        catch (IOException e){
-            log.error("Error loading new-edit-task.fxml");
-        }
+        if(((Button) source).getId().equals("btnNew") || mainTable.getSelectionModel().getSelectedItem() != null)
+            try {
+                setEditNewStage(new Stage());
+                NewEditController.setCurrentStage(editNewStage);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/new-edit-task.fxml"));
+                Parent root = loader.load();
+                NewEditController editCtrl = loader.getController();
+                editCtrl.setService(service);
+                editCtrl.setTasksList(tasksList);
+                editCtrl.setCurrentTask((Task)mainTable.getSelectionModel().getSelectedItem());
+                editCtrl.setPressedButtonId(((Button) source).getId());
+
+
+                editNewStage.setScene(new Scene(root, 600, 350));
+                editNewStage.setResizable(false);
+                editNewStage.initOwner(Main.primaryStage);
+                editNewStage.initModality(Modality.APPLICATION_MODAL);//??????
+                editNewStage.show();
+            }
+            catch (IOException e){
+                log.error("Error loading new-edit-task.fxml");
+            }
     }
     @FXML
     public void deleteTask(){
