@@ -130,20 +130,21 @@ public class Controller {
     }
     @FXML
     public void showDetailedInfo(){
-        try {
-            Stage stage = new Stage();
-            FXMLLoader loader =new FXMLLoader(getClass().getResource("/fxml/task-info.fxml"));
-            Parent root = loader.load();
-            stage.setScene(new Scene(root, 550, 350));
-            stage.setResizable(false);
-            stage.setTitle("Info");
-            stage.initModality(Modality.APPLICATION_MODAL);//??????
-            setInfoStage(stage);
-            stage.show();
-        }
-        catch (IOException e){
-            log.error("error loading task-info.fxml");
-        }
+        if((Task)mainTable.getSelectionModel().getSelectedItem() != null)
+            try {
+                Stage stage = new Stage();
+                FXMLLoader loader =new FXMLLoader(getClass().getResource("/fxml/task-info.fxml"));
+                Parent root = loader.load();
+                stage.setScene(new Scene(root, 550, 350));
+                stage.setResizable(false);
+                stage.setTitle("Info");
+                stage.initModality(Modality.APPLICATION_MODAL);
+                setInfoStage(stage);
+                stage.show();
+            }
+            catch (IOException e){
+                log.error("error loading task-info.fxml");
+            }
     }
     @FXML
     public void showFilteredTasks(){
