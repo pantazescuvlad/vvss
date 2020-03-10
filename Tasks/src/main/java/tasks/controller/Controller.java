@@ -27,14 +27,14 @@ import java.util.Date;
 
 public class Controller {
     private static final Logger log = Logger.getLogger(Controller.class.getName());
-    public ObservableList<Task> tasksList;
-    TasksService service;
-    DateService dateService;
+    private ObservableList<Task> tasksList;
+    private TasksService service;
+    private DateService dateService;
 
-    public static Stage editNewStage;
-    public static Stage infoStage;
+    static Stage editNewStage;
+    static Stage infoStage;
 
-    public static TableView mainTable;
+    static TableView mainTable;
 
     @FXML
     public  TableView tasks;
@@ -55,13 +55,26 @@ public class Controller {
     @FXML
     private TextField fieldTimeTo;
 
+    public static void setMainTable(TableView mainTable) {
+        Controller.mainTable = mainTable;
+    }
+
+    public static void setInfoStage(Stage infoStage) {
+        Controller.infoStage = infoStage;
+    }
+
+    public static void setEditNewStage(Stage editNewStage) {
+        Controller.editNewStage = editNewStage;
+    }
+
+
     public void setService(TasksService service){
         this.service=service;
         this.dateService=new DateService(service);
         this.tasksList=service.getObservableList();
         updateCountLabel(tasksList);
         tasks.setItems(tasksList);
-        mainTable = tasks;
+        setMainTable(tasks);
 
         tasksList.addListener((ListChangeListener.Change<? extends Task> c) -> {
                     updateCountLabel(tasksList);
@@ -86,24 +99,28 @@ public class Controller {
         Object source = actionEvent.getSource();
         NewEditController.setClickedButton((Button) source);
 
-        try {
-            editNewStage = new Stage();
-            NewEditController.setCurrentStage(editNewStage);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/new-edit-task.fxml"));
-            Parent root = loader.load();//getClass().getResource("/fxml/new-edit-task.fxml"));
-            NewEditController editCtrl = loader.getController();
-            editCtrl.setService(service);
-            editCtrl.setTasksList(tasksList);
-            editCtrl.setCurrentTask((Task)mainTable.getSelectionModel().getSelectedItem());
-            editNewStage.setScene(new Scene(root, 600, 350));
-            editNewStage.setResizable(false);
-            editNewStage.initOwner(Main.primaryStage);
-            editNewStage.initModality(Modality.APPLICATION_MODAL);//??????
-            editNewStage.show();
-        }
-        catch (IOException e){
-            log.error("Error loading new-edit-task.fxml");
-        }
+        if(((Button) source).getId().equals("btnNew") || mainTable.getSelectionModel().getSelectedItem() != null)
+            try {
+                setEditNewStage(new Stage());
+                NewEditController.setCurrentStage(editNewStage);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/new-edit-task.fxml"));
+                Parent root = loader.load();
+                NewEditController editCtrl = loader.getController();
+                editCtrl.setService(service);
+                editCtrl.setTasksList(tasksList);
+                editCtrl.setCurrentTask((Task)mainTable.getSelectionModel().getSelectedItem());
+                editCtrl.setPressedButtonId(((Button) source).getId());
+
+
+                editNewStage.setScene(new Scene(root, 600, 350));
+                editNewStage.setResizable(false);
+                editNewStage.initOwner(Main.primaryStage);
+                editNewStage.initModality(Modality.APPLICATION_MODAL);//??????
+                editNewStage.show();
+            }
+            catch (IOException e){
+                log.error("Error loading new-edit-task.fxml");
+            }
     }
     @FXML
     public void deleteTask(){
@@ -113,20 +130,21 @@ public class Controller {
     }
     @FXML
     public void showDetailedInfo(){
-        try {
-            Stage stage = new Stage();
-            FXMLLoader loader =new FXMLLoader(getClass().getResource("/fxml/task-info.fxml"));
-            Parent root = loader.load();
-            stage.setScene(new Scene(root, 550, 350));
-            stage.setResizable(false);
-            stage.setTitle("Info");
-            stage.initModality(Modality.APPLICATION_MODAL);//??????
-            infoStage = stage;
-            stage.show();
-        }
-        catch (IOException e){
-            log.error("error loading task-info.fxml");
-        }
+        if((Task)mainTable.getSelectionModel().getSelectedItem() != null)
+            try {
+                Stage stage = new Stage();
+                FXMLLoader loader =new FXMLLoader(getClass().getResource("/fxml/task-info.fxml"));
+                Parent root = loader.load();
+                stage.setScene(new Scene(root, 550, 350));
+                stage.setResizable(false);
+                stage.setTitle("Info");
+                stage.initModality(Modality.APPLICATION_MODAL);
+                setInfoStage(stage);
+                stage.show();
+            }
+            catch (IOException e){
+                log.error("error loading task-info.fxml");
+            }
     }
     @FXML
     public void showFilteredTasks(){
