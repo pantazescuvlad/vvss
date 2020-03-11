@@ -10,7 +10,6 @@ import java.util.Date;
 
 public class Task implements Serializable, Cloneable {
     private String title;
-//    private Date time;
     private Date start;
     private Date end;
     private int interval;
@@ -28,7 +27,6 @@ public class Task implements Serializable, Cloneable {
             throw new IllegalArgumentException("Time cannot be negative");
         }
         this.title = title;
-//        this.time = time;
         this.start = time;
         this.end = time;
     }
@@ -45,7 +43,6 @@ public class Task implements Serializable, Cloneable {
         this.start = start;
         this.end = end;
         this.interval = interval;
-//        this.time = start;
     }
 
     public String getTitle() {
@@ -63,16 +60,6 @@ public class Task implements Serializable, Cloneable {
         this.active = active;
     }
 
-//    public Date getTime() {
-//        return time;
-//    }
-
-//    public void setTime(Date time) {
-//        this.time = time;
-//        this.start = time;
-//        this.end = time;
-//        this.interval = 0;
-//    }
 
     public Date getStartTime() {
         return start;
@@ -86,7 +73,6 @@ public class Task implements Serializable, Cloneable {
     }
 
     public void setTime(Date start, Date end, int interval){
-//        this.time = start;
         this.start = start;
         this.end = end;
         this.interval = interval;
@@ -142,7 +128,6 @@ public class Task implements Serializable, Cloneable {
 
         Task task = (Task) o;
 
-//        if (!time.equals(task.time)) return false;
         if (!start.equals(task.start)) return false;
         if (!end.equals(task.end)) return false;
         if (interval != task.interval) return false;
@@ -153,7 +138,6 @@ public class Task implements Serializable, Cloneable {
     @Override
     public int hashCode() {
         int result = title.hashCode();
-//        result = 31 * result + time.hashCode();
         result = 31 * result + start.hashCode();
         result = 31 * result + end.hashCode();
         result = 31 * result + interval;
@@ -176,7 +160,6 @@ public class Task implements Serializable, Cloneable {
     @Override
     protected Task clone() throws CloneNotSupportedException {
         Task task  = (Task)super.clone();
-//        task.time = (Date)this.time.clone();
         task.start = (Date)this.start.clone();
         task.end = (Date)this.end.clone();
         return task;
