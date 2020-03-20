@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import tasks.model.ArrayTaskList;
 
+import javax.swing.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -42,7 +43,7 @@ class DateServiceTest {
     @Test
     void getDateMergedWithTime_noTimeDate_invalid_ECP() {
         String validTime = "10:00";
-        Date validDate = new Date("2018/3/20");
+        Date validDate = new Date("2016/3/20");
 
         Calendar calendar2 = Calendar.getInstance();
         calendar2.setTime(validDate);
@@ -62,7 +63,11 @@ class DateServiceTest {
     @Test
     void getDateMergedWithTime_noTimeDate_valid_BVA() {
         String validTime = "00:00";
-        Date validDate = new Date("2019/1/1");
+
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.YEAR, -1);
+        cal.add(Calendar.DATE, 1);
+        Date validDate = cal.getTime();
 
         Calendar calendar2 = Calendar.getInstance();
         calendar2.setTime(validDate);
@@ -79,8 +84,12 @@ class DateServiceTest {
     @Test
     void getDateMergedWithTime_noTimeDate_invalid_BVA() {
         String validTime = "23:59";
-        Date validDate = new Date("2018/12/31");
 
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.YEAR, -1);
+        cal.add(Calendar.DATE, -1);
+        Date validDate = cal.getTime();
+        
         Calendar calendar2 = Calendar.getInstance();
         calendar2.setTime(validDate);
 
