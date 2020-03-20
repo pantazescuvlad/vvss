@@ -17,19 +17,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class DateServiceTest {
     private DateService dateService;
-
-    @BeforeAll
-    void setUp() {
-        TasksService tasksService = new TasksService(new ArrayTaskList());
-        dateService = new DateService(tasksService);
-    }
-
-    DateService dateService;
 
     @BeforeAll
     void setUp() {
@@ -104,7 +97,7 @@ class DateServiceTest {
         cal.add(Calendar.YEAR, -1);
         cal.add(Calendar.DATE, -1);
         Date validDate = cal.getTime();
-        
+
         Calendar calendar2 = Calendar.getInstance();
         calendar2.setTime(validDate);
 
@@ -117,8 +110,10 @@ class DateServiceTest {
         String expectedMessage = "task can't be older than a year";
         String actualMessage = exception.getMessage();
 
-        assert(actualMessage.contains(expectedMessage));
+        assert (actualMessage.contains(expectedMessage));
+    }
 
+    @Test
     void getDateMergedWithTime_time_valid_ECP() {
         String valid_time = "08:11";
         Calendar calendar = Calendar.getInstance();
@@ -130,7 +125,10 @@ class DateServiceTest {
     @Test
     void getDateMergedWithTime_time_invalid_ECP() {
         String invalid_time = "abc";
-        assertThrows(IllegalArgumentException.class, () -> dateService.getDateMergedWithTime(invalid_time, new Date()), "Expected IllegalArgumentException to be thrown.");
+        assertThrows(IllegalArgumentException.class,
+                () -> dateService.getDateMergedWithTime(invalid_time, new Date()),
+                "Expected IllegalArgumentException to be thrown."
+        );
     }
 
     @Test
@@ -148,7 +146,6 @@ class DateServiceTest {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(dateService.getDateMergedWithTime(valid_time, new Date()));
         assertFalse(calendar.get(Calendar.HOUR_OF_DAY) == 24);
-
     }
 }
 
