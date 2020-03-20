@@ -36,6 +36,7 @@ public class DateService {
         calendar.setTime(noTimeDate);
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minute);
+        if(calendar.get(Calendar.YEAR) < 2019) throw new IllegalArgumentException("task can't be older than a year");
         return calendar.getTime();
     }
         public String getTimeOfTheDayFromDate(Date date){//to set in detached time field
