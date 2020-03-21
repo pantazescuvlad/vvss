@@ -143,10 +143,11 @@ class DateServiceTest {
 
         @Test
         void getDateMergedWithTime_time_invalid_BVA() {
-            String valid_time = "24:00";
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(dateService.getDateMergedWithTime(valid_time, new Date()));
-            assertFalse(calendar.get(Calendar.HOUR_OF_DAY) == 24);
+            String invalid_time = "25:00";
+            assertThrows(IllegalArgumentException.class,
+                    () -> dateService.getDateMergedWithTime(invalid_time, new Date()),
+                    "Expected IllegalArgumentException to be thrown."
+            );
         }
     }
 }
