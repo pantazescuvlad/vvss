@@ -85,7 +85,7 @@ class DateServiceTest {
 
     @Nested
     @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-    @Tag("ECP")
+    @Tag("BVA")
     class TestsBVA {
         @Test
         void getDateMergedWithTime_noTimeDate_valid_BVA() {
