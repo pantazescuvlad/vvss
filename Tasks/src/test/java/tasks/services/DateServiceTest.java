@@ -31,7 +31,6 @@ class DateServiceTest {
     }
 
     @Test
-
     void getDateMergedWithTime_noTimeDate_valid_ECP() {
         String validTime = "10:00";
         Date validDate = new Date("2020/3/20");
