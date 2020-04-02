@@ -20,11 +20,11 @@ public class TasksOperations {
         LOG.info(start);
         LOG.info(end);
         ArrayList<Task> incomingTasks = new ArrayList<>();
-        for (Task t : tasks) {
-            Date nextTime = t.nextTimeAfter(start);
+        for(int i = 0; i < tasks.size(); i++) {
+            Date nextTime = tasks.get(i).nextTimeAfter(start);
             if (nextTime != null && (nextTime.before(end) || nextTime.equals(end))) {
-                incomingTasks.add(t);
-                LOG.info(t.getTitle());
+                incomingTasks.add(tasks.get(i));
+                LOG.info(tasks.get(i).getTitle());
             }
         }
         return incomingTasks;
