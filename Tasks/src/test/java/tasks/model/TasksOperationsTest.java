@@ -14,11 +14,13 @@ import java.util.Observable;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class TasksOperationsTest {
 
+    TasksOperations tasksOperations;
+
     @BeforeAll
     void setUp() {
         List<Task> tasks = new ArrayList<>();
         ObservableList<Task> tasksList = FXCollections.observableArrayList(tasks);
-        TasksOperations tasksOperations = new TasksOperations(tasksList);
+        tasksOperations = new TasksOperations(tasksList);
     }
 
     @Test
