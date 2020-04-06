@@ -20,15 +20,24 @@ public class TasksOperations {
         LOG.info(start);
         LOG.info(end);
         ArrayList<Task> incomingTasks = new ArrayList<>();
-        for(int i = 0; i < tasks.size(); i++) {
+        int i = 0;
+        while(i < tasks.size()) {
             Date nextTime = tasks.get(i).nextTimeAfter(start);
-            if (nextTime != null && (nextTime.before(end) || nextTime.equals(end))) {
-                incomingTasks.add(tasks.get(i));
-                LOG.info(tasks.get(i).getTitle());
+            if (nextTime != null) {
+                if (nextTime.before(end)) {
+                    incomingTasks.add(tasks.get(i));
+                    LOG.info(tasks.get(i).getTitle());
+                }
+                else if (nextTime.equals(end)) {
+                    incomingTasks.add(tasks.get(i));
+                    LOG.info(tasks.get(i).getTitle());
+                }
             }
+            i++;
         }
         return incomingTasks;
     }
+
     public SortedMap<Date, Set<Task>> calendar( Date start, Date end){
         Iterable<Task> incomingTasks = incoming(start, end);
         TreeMap<Date, Set<Task>> calendar = new TreeMap<>();
