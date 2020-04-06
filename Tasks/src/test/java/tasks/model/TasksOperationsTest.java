@@ -5,11 +5,11 @@ import javafx.collections.ObservableList;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import tasks.services.DateService;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
 import java.util.List;
-import java.util.Observable;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class TasksOperationsTest {
@@ -25,7 +25,10 @@ class TasksOperationsTest {
 
     @Test
     void incoming_nextTime_is_null(){
+        Date start = new Date("3005/3/20");
+        Date end = new Date("3005/3/21");
 
+        assert(((Collection<?>)tasksOperations.incoming(start, end)).isEmpty());
     }
 
 }
