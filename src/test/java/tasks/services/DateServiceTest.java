@@ -2,7 +2,7 @@ package tasks.services;
 
 import org.junit.jupiter.api.*;
 
-import tasks.model.ArrayTaskList;
+import tasks.repository.ArrayTaskList;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @DisplayName("DateService Tests")
-class DateServiceTest {
+public class DateServiceTest {
     private DateService dateService;
 
     @BeforeAll
@@ -25,7 +25,7 @@ class DateServiceTest {
     @Nested
     @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
     @Tag("ECP")
-    class TestsECP {
+    public class TestsECP {
         @Test
         void getDateMergedWithTime_noTimeDate_valid_ECP() {
             String validTime = "10:00";
@@ -86,7 +86,7 @@ class DateServiceTest {
     @Nested
     @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
     @Tag("BVA")
-    class TestsBVA {
+    public class TestsBVA {
         @Test
         void getDateMergedWithTime_noTimeDate_valid_BVA() {
             String validTime = "00:00";
